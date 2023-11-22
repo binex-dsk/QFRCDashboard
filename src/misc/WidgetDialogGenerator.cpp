@@ -1,7 +1,7 @@
 #include "misc/WidgetDialogGenerator.h"
 
 #include "qheaderview.h"
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 
 #include <QMetaObject>
 

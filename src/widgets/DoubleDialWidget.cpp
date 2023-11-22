@@ -56,11 +56,10 @@ QJsonObject DoubleDialWidget::saveObject() {
 
 void DoubleDialWidget::update() {
     if (!m_text->hasFocus()) {
-        double value = m_entry->GetDouble(m_value);
+        DoubleWidget::update();
 
-        m_value = value;
-        m_fakeValue = value * 100;
-        setText(QString::number(value));
+        m_fakeValue = m_value * 100;
+        setText(QString::number(m_value));
 
         m_dial->setValue(m_fakeValue);
     }
@@ -74,7 +73,7 @@ BaseWidget * DoubleDialWidget::fromJson(QJsonObject obj) {
 
     QFont font;
     font.fromString(obj.value("textFont").toString(qApp->font().toString()));
-    widget->setFont(font);
+    widget->setTextFont(font);
 
     widget->setMin(obj.value("min").toDouble(0.));
     widget->setMax(obj.value("max").toDouble(360.));

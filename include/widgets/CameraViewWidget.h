@@ -3,7 +3,7 @@
 
 #include <QVideoWidget>
 #include <QMediaPlayer>
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 
 class CameraViewWidget : public BaseWidget
 {

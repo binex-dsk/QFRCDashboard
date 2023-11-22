@@ -4,9 +4,10 @@
 #include <QKeyEvent>
 #include <QApplication>
 
-DoubleDisplayWidget::DoubleDisplayWidget(const QString &title, const double &defaultValue, const QString &topic) : TextWidget(WidgetTypes::DoubleDisplay, title, QString::number(defaultValue), topic)
+DoubleDisplayWidget::DoubleDisplayWidget(const QString &title, const double &defaultValue, const QString &topic) :     BaseWidget(WidgetTypes::DoubleDisplay, title, topic),
+TextWidget(QString::number(defaultValue)),
+    DoubleWidget(defaultValue)
 {
-    m_value = defaultValue;
 }
 
 DoubleDisplayWidget::~DoubleDisplayWidget() {
@@ -15,19 +16,20 @@ DoubleDisplayWidget::~DoubleDisplayWidget() {
 
 void DoubleDisplayWidget::update() {
     if (!m_text->hasFocus()) {
-        double value = m_entry->GetDouble(m_value);
+        DoubleWidget::update();
 
-        m_value = value;
-        setText(QString::number(value));
+        TextWidget::setText(QString::number(m_value));
     }
 }
 
 QJsonObject DoubleDisplayWidget::saveObject() {
-    QJsonObject object = TextWidget::saveObject();
+    QJsonObject textObject = TextWidget::saveObject();
+    QJsonObject doubleObject = DoubleWidget::saveObject();
 
-    object.insert("value", m_value);
+    QVariantMap combined = textObject.toVariantMap();
+    combined.insert(doubleObject.toVariantMap());
 
-    return object;
+    return QJsonObject::fromVariantMap(combined);
 }
 
 BaseWidget * DoubleDisplayWidget::fromJson(QJsonObject obj) {
@@ -38,9 +40,9 @@ BaseWidget * DoubleDisplayWidget::fromJson(QJsonObject obj) {
 
     QFont font;
     font.fromString(obj.value("textFont").toString(qApp->font().toString()));
-    widget->setFont(font);
+    widget->setTextFont(font);
 
-    return widget;
+    return (TextWidget *) widget;
 }
 
 void DoubleDisplayWidget::keyPressEvent(QKeyEvent *event) {

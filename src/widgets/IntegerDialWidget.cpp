@@ -71,7 +71,7 @@ BaseWidget * IntegerDialWidget::fromJson(QJsonObject obj) {
 
     QFont font;
     font.fromString(obj.value("textFont").toString(qApp->font().toString()));
-    widget->setFont(font);
+    widget->setTextFont(font);
 
     widget->setMin(obj.value("min").toInt(0));
     widget->setMax(obj.value("max").toInt(1000));

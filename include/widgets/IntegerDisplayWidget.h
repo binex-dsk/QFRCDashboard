@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TextWidget.h"
+#include "widgets/base/TextWidget.h"
 
 class BaseWidget;
 

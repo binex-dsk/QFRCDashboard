@@ -1,7 +1,7 @@
 #ifndef STRINGCHOOSERWIDGET_H
 #define STRINGCHOOSERWIDGET_H
 
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 
 #include <QComboBox>
 

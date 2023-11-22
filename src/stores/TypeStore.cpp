@@ -1,6 +1,6 @@
 #include "stores/TypeStore.h"
 #include "misc/WidgetDialogGenerator.h"
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 
 #include <QMenu>
 

@@ -12,11 +12,10 @@ class BaseWidget;
  *
  * Due to limitations within QDial, this only supports up to two decimal places.
  */
-class DoubleDialWidget : public DoubleDisplayWidget
+class DoubleDialWidget : public DoubleDisplayWidget, public BaseWidget
 {
     Q_OBJECT
 
-    Q_PROPERTY(double value MEMBER m_value)
     Q_PROPERTY(double Maximum READ max WRITE setMax REQUIRED)
     Q_PROPERTY(double Minimum READ min WRITE setMin REQUIRED)
 protected:

@@ -1,10 +1,10 @@
 #include "widgets/BooleanCheckboxWidget.h"
 #include "stores/TopicStore.h"
 
-BooleanCheckboxWidget::BooleanCheckboxWidget(const QString &title, const bool &defaultValue, const QString &topic) : BaseWidget(WidgetTypes::BooleanCheckbox, title, topic)
+BooleanCheckboxWidget::BooleanCheckboxWidget(const QString &title, const bool &defaultValue, const QString &topic) :
+    BaseWidget(WidgetTypes::BooleanCheckbox, title, topic),
+    BooleanWidget(defaultValue)
 {
-    m_value = defaultValue;
-
     m_checkbox = new QCheckBox(this);
     m_checkbox->setObjectName("checkboxWidget");
 
@@ -35,15 +35,14 @@ void BooleanCheckboxWidget::setCheckboxSize(int size) {
 }
 
 QJsonObject BooleanCheckboxWidget::saveObject() {
-    QJsonObject object = BaseWidget::saveObject();
+    QJsonObject object = BooleanWidget::saveObject();
 
-    object.insert("value", m_value);
     object.insert("checkboxSize", m_checkboxSize);
 
     return object;
 }
 
-BaseWidget * BooleanCheckboxWidget::fromJson(QJsonObject obj) {
+BaseWidget *BooleanCheckboxWidget::fromJson(QJsonObject obj) {
     BooleanCheckboxWidget *widget = new BooleanCheckboxWidget(
         obj.value("title").toString(""),
         obj.value("value").toBool(false),
@@ -54,9 +53,7 @@ BaseWidget * BooleanCheckboxWidget::fromJson(QJsonObject obj) {
 }
 
 void BooleanCheckboxWidget::update() {
-    bool value = m_entry->GetBoolean(m_value);
+    BooleanWidget::update();
 
-    m_value = value;
-
-    m_checkbox->setCheckState(value ? Qt::Checked : Qt::Unchecked);
+    m_checkbox->setCheckState(m_value ? Qt::Checked : Qt::Unchecked);
 }

@@ -1,4 +1,4 @@
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 #include "Globals.h"
 #include "stores/TopicStore.h"
 

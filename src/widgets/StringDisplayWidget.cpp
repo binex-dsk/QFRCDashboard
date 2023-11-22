@@ -3,9 +3,11 @@
 
 #include <QApplication>
 
-StringDisplayWidget::StringDisplayWidget(const QString &title, const QString &defaultValue, const QString &topic) : TextWidget(WidgetTypes::StringDisplay, title, defaultValue, topic)
+StringDisplayWidget::StringDisplayWidget(const QString &title, const QString &defaultValue, const QString &topic) :
+    BaseWidget(WidgetTypes::StringDisplay, title, topic),
+    TextWidget(defaultValue),
+    StringWidget(defaultValue)
 {
-    m_value = defaultValue;
 }
 
 StringDisplayWidget::~StringDisplayWidget() {
@@ -28,7 +30,7 @@ BaseWidget * StringDisplayWidget::fromJson(QJsonObject obj) {
 
     QFont font;
     font.fromString(obj.value("textFont").toString(qApp->font().toString()));
-    widget->setFont(font);
+    widget->setTextFont(font);
 
     return widget;
 }

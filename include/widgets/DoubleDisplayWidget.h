@@ -1,17 +1,14 @@
 #pragma once
 
-#include "TextWidget.h"
+#include "widgets/base/TextWidget.h"
+#include "widgets/base/DoubleWidget.h"
 
 class BaseWidget;
 
-class DoubleDisplayWidget : public TextWidget
+class DoubleDisplayWidget : public virtual TextWidget, public virtual DoubleWidget, public BaseWidget
 {
     Q_OBJECT
-
-    Q_PROPERTY(double value MEMBER m_value)
 protected:
-    double m_value = 0.;
-
     void keyPressEvent(QKeyEvent *event) override;
 public:
     DoubleDisplayWidget(const QString &title, const double &defaultValue, const QString &topic);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 #include "misc/ShapedFrame.h"
 
 class EnumWidget : public BaseWidget

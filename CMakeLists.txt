@@ -18,12 +18,17 @@ set(PROJECT_SOURCES
         src/Globals.cpp
         src/MainWindow.cpp
 
-        src/widgets/BaseWidget.cpp
+        src/widgets/base/BaseWidget.cpp
+        src/widgets/base/TextWidget.cpp
+        src/widgets/base/IntegerWidget.cpp
+        src/widgets/base/DoubleWidget.cpp
+        src/widgets/base/StringWidget.cpp
+        src/widgets/base/BooleanWidget.cpp
+
         src/widgets/DoubleDisplayWidget.cpp
         src/widgets/TabWidget.cpp
         src/widgets/BooleanDisplayWidget.cpp
         src/widgets/StringDisplayWidget.cpp
-        src/widgets/TextWidget.cpp
         src/widgets/BooleanCheckboxWidget.cpp
         src/widgets/DoubleDialWidget.cpp
         src/widgets/StringChooserWidget.cpp
@@ -46,12 +51,17 @@ set(PROJECT_SOURCES
         include/Globals.h
         include/MainWindow.h
 
-        include/widgets/BaseWidget.h
+        include/widgets/base/BaseWidget.h
+        include/widgets/base/TextWidget.h
+        include/widgets/base/IntegerWidget.h
+        include/widgets/base/DoubleWidget.h
+        include/widgets/base/StringWidget.h
+        include/widgets/base/BooleanWidget.h
+
         include/widgets/DoubleDisplayWidget.h
         include/widgets/TabWidget.h
         include/widgets/BooleanDisplayWidget.h
         include/widgets/StringDisplayWidget.h
-        include/widgets/TextWidget.h
         include/widgets/BooleanCheckboxWidget.h
         include/widgets/DoubleDialWidget.h
         include/widgets/StringChooserWidget.h

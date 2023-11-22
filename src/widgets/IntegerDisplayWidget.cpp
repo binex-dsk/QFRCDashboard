@@ -38,7 +38,7 @@ BaseWidget * IntegerDisplayWidget::fromJson(QJsonObject obj) {
 
     QFont font;
     font.fromString(obj.value("textFont").toString(qApp->font().toString()));
-    widget->setFont(font);
+    widget->setTextFont(font);
 
     return widget;
 }

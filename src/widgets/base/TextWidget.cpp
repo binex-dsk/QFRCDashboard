@@ -1,11 +1,11 @@
-#include "widgets/TextWidget.h"
+#include "widgets/base/TextWidget.h"
 #include "stores/TopicStore.h"
 
 #include <QAction>
 #include <QMenu>
 #include <QFontDialog>
 
-TextWidget::TextWidget(const WidgetTypes &type, const QString &title, const QString &defaultText, const QString &topic) : BaseWidget::BaseWidget(type, title, topic)
+TextWidget::TextWidget(const QString &defaultText)
 {
     m_text = new QLineEdit(defaultText, this);
 
@@ -27,11 +27,11 @@ void TextWidget::setText(const QString &text) {
     m_text->setText(text);
 }
 
-QFont TextWidget::font() {
+QFont TextWidget::textFont() {
     return m_text->font();
 }
 
-void TextWidget::setFont(const QFont &font) {
+void TextWidget::setTextFont(const QFont &font) {
     m_text->setFont(font);
     m_text->setMinimumWidth(m_text->fontMetrics().maxWidth());
 }
@@ -43,7 +43,7 @@ QMenu *TextWidget::constructContextMenu(WidgetData data) {
     menu->addAction(textFontAction);
 
     connect(textFontAction, &QAction::triggered, this, [this](bool) {
-        setFont(QFontDialog::getFont(0, font(), this, "Set Text Font"));
+        setTextFont(QFontDialog::getFont(0, textFont(), this, "Set Text Font"));
     });
 
     return menu;
@@ -52,7 +52,7 @@ QMenu *TextWidget::constructContextMenu(WidgetData data) {
 QJsonObject TextWidget::saveObject() {
     QJsonObject object = BaseWidget::saveObject();
 
-    object.insert("textFont", font().toString());
+    object.insert("textFont", textFont().toString());
     object.insert("text", text());
 
     return object;

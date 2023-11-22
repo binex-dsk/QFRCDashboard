@@ -24,6 +24,7 @@ protected:
     nt::NetworkTableEntry *m_entry;
 public:
     BaseWidget(const WidgetTypes &type, const QString &title, const QString &topic);
+    BaseWidget() = default;
     ~BaseWidget();
 
     QFont titleFont();

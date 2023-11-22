@@ -1,9 +1,10 @@
 #include "widgets/BooleanDisplayWidget.h"
 #include "stores/TopicStore.h"
 
-BooleanDisplayWidget::BooleanDisplayWidget(const QString &title, const bool &defaultValue, const QString &topic) : BaseWidget(WidgetTypes::BooleanDisplay, title, topic)
+BooleanDisplayWidget::BooleanDisplayWidget(const QString &title, const bool &defaultValue, const QString &topic) :
+    BaseWidget(WidgetTypes::BooleanDisplay, title, topic),
+    BooleanWidget(defaultValue)
 {
-    m_value = defaultValue;
     m_colorWidget = new ShapedFrame(Globals::FrameShape::Rectangle, this);
 
     m_layout->addWidget(m_colorWidget, 1, 0, 3, 1);
@@ -39,9 +40,8 @@ void BooleanDisplayWidget::setShape(Globals::FrameShape shape) {
 }
 
 QJsonObject BooleanDisplayWidget::saveObject() {
-    QJsonObject object = BaseWidget::saveObject();
+    QJsonObject object = BooleanWidget::saveObject();
 
-    object.insert("value", m_value);
     object.insert("trueColor", m_trueColor.name());
     object.insert("falseColor", m_falseColor.name());
     object.insert("shape", Globals::shapeNameMap.key(m_shape));
@@ -63,9 +63,7 @@ BaseWidget * BooleanDisplayWidget::fromJson(QJsonObject obj) {
 }
 
 void BooleanDisplayWidget::update() {
-    bool value = m_entry->GetBoolean(m_value);
+    BooleanWidget::update();
 
-    m_value = value;
-
-    m_colorWidget->setColor(value ? m_trueColor : m_falseColor);
+    m_colorWidget->setColor(m_value ? m_trueColor : m_falseColor);
 }

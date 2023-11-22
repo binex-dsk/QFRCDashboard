@@ -9,7 +9,7 @@
 #include <QTreeWidget>
 
 #include "Globals.h"
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BaseWidget.h"
 
 class NewWidgetTreeDialog : public QDialog
 {

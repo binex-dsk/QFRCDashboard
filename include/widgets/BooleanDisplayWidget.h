@@ -1,19 +1,16 @@
 #pragma once
 
-#include "widgets/BaseWidget.h"
+#include "widgets/base/BooleanWidget.h"
 #include "misc/ShapedFrame.h"
 
-class BooleanDisplayWidget : public BaseWidget
+class BooleanDisplayWidget : public BooleanWidget, public BaseWidget
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool value MEMBER m_value)
     Q_PROPERTY(QColor True_Color READ trueColor WRITE setTrueColor REQUIRED)
     Q_PROPERTY(QColor False_Color READ falseColor WRITE setFalseColor REQUIRED)
     Q_PROPERTY(Globals::FrameShape Shape READ shape WRITE setShape REQUIRED)
 protected:
-    bool m_value = false;
-
     ShapedFrame *m_colorWidget;
 
     QColor m_trueColor = Qt::green;
