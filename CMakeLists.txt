@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.25)
 
 project(QFRCDashboard VERSION 1.0.0 LANGUAGES CXX)
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS "ui/")
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -101,6 +103,12 @@ set(PROJECT_SOURCES
         include/stores/TopicStore.h
         include/stores/TypeStore.h
         include/stores/FilterStore.h
+
+        # ==================================
+        ui/MainWindow.ui
+        ui/NTSettingsDialog.ui
+        ui/WidgetDialogGenerator.ui
+        ui/NewWidgetTreeDialog.ui
 )
 
 if(WIN32)
@@ -117,6 +125,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${RCS_FILE}
         ${PROJECT_SOURCES}
         include/misc/ChartView.h src/misc/ChartView.cpp
+        include/misc/GridLineWidget.h src/misc/GridLineWidget.cpp
 
     )
 endif()
@@ -151,6 +160,7 @@ add_subdirectory("buildconfig")
 target_link_libraries(QFRCDashboard PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::MultimediaWidgets Qt${QT_VERSION_MAJOR}::Charts ntcore SingleApplication::SingleApplication BuildConfig)
 
 target_include_directories(QFRCDashboard PRIVATE "$<TARGET_PROPERTY:ntcore,INTERFACE_INCLUDE_DIRECTORIES>")
+target_include_directories(QFRCDashboard PRIVATE ui/)
 target_include_directories(QFRCDashboard PRIVATE include/)
 
 include(GNUInstallDirs)

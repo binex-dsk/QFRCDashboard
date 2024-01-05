@@ -1,7 +1,5 @@
 #pragma once
 
-// #include "CentralWidget.h"
-
 #include "widgets/BaseWidget.h"
 #include "widgets/TabWidget.h"
 
@@ -14,16 +12,12 @@
 #include <QTabWidget>
 
 #include "Globals.h"
+#include "ui_MainWindow.h"
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, Ui::MainWindow
 {
     Q_OBJECT
 private:
-    QTabWidget *m_centralWidget;
-
-    QToolBar *m_toolbar;
-    QMenuBar *m_menubar;
-
     QList<TabWidget *> m_tabs;
 
     QString m_filename{};
@@ -60,7 +54,10 @@ public slots:
     void newWidgetPopup();
     void configNewWidget(BaseWidget *widget, WidgetData data);
     void beginNewWidgetDrag(BaseWidget *widget, WidgetData data);
+    void newCameraView();
+    void newGraph();
 
     // About Menu
-    void aboutDialog();
+    void about();
+    void aboutQt();
 };
